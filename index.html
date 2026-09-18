@@ -206,6 +206,7 @@
     perspective:1400px;
     touch-action:pan-y;
     cursor:grab;
+    overflow:hidden;
   }
   .cg-wrap:active{cursor:grabbing;}
   .cg-track{
@@ -410,7 +411,7 @@
     <div class="cg-wrap" id="cg-wrap">
       <div class="cg-track" id="cg-track"></div>
     </div>
-    <p class="cg-hint">Arraste pra girar — fotos reais entram aqui na Etapa 5</p>
+    <p class="cg-hint">Arraste pra girar — faltam mais fotos pra completar</p>
   </div>
 </section>
 
@@ -454,7 +455,7 @@
   var total = 20;
   var wrap = document.getElementById('cg-wrap');
   var track = document.getElementById('cg-track');
-  var radius = window.innerWidth <= 800 ? 260 : 420;
+  var radius = window.innerWidth <= 800 ? 460 : 700;
   var anglePerItem = 360 / total;
   var cards = [];
 
@@ -484,12 +485,20 @@
   var lastX = 0;
   var visible = false;
 
+  var visibleSpan = 65; /* graus pra cada lado do centro onde um card ainda aparece */
+
   function applyOpacity() {
     for (var i = 0; i < cards.length; i++) {
       var itemAngle = i * anglePerItem;
       var relative = ((itemAngle + rotation) % 360 + 360) % 360;
       var normalized = relative > 180 ? 360 - relative : relative;
-      cards[i].style.opacity = Math.max(0.25, 1 - (normalized / 180));
+      if (normalized > visibleSpan) {
+        cards[i].style.opacity = 0;
+        cards[i].style.pointerEvents = 'none';
+      } else {
+        cards[i].style.opacity = Math.max(0.15, 1 - (normalized / visibleSpan));
+        cards[i].style.pointerEvents = 'auto';
+      }
     }
   }
 
