@@ -40,7 +40,10 @@
   a{color:inherit;}
   ::selection{background:var(--red);color:var(--white);}
 
-  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  @media (min-width:900px){
+    .container{padding:0 40px;}
+  }
   section{padding:96px 0;}
 
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
@@ -229,6 +232,12 @@
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
     gap:20px;
+  }
+  @media (min-width:900px){
+    /* Evita card orfao sozinho na ultima linha em grids de 5 itens */
+    #perfil .card-grid, #oportunidades .card-grid{
+      grid-template-columns:repeat(5, 1fr);
+    }
   }
   .info-card{
     background:var(--surface);
