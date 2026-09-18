@@ -64,6 +64,12 @@
     position:relative;
     border-bottom:1px solid var(--line);
   }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:32px;
+    align-items:end;
+  }
   .hero .tag{
     color:var(--gold);
     font-size:14px;
@@ -73,7 +79,7 @@
     margin-bottom:16px;
   }
   .hero h1{
-    font-size:clamp(48px, 10vw, 120px);
+    font-size:clamp(48px, 8vw, 110px);
     line-height:0.95;
     color:var(--white);
   }
@@ -84,15 +90,27 @@
     color:var(--muted);
     max-width:560px;
   }
-  .hero .ph-photo{
-    margin-top:40px;
-    border:1px dashed var(--line);
-    background:var(--surface);
-    color:var(--muted);
-    font-size:13px;
-    padding:60px 20px;
-    text-align:center;
-    max-width:560px;
+  .hero-photo{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    height:100%;
+  }
+  .hero-photo img{
+    max-height:78vh;
+    width:auto;
+    max-width:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 30px 40px rgba(0,0,0,0.55));
+  }
+  .hero-photo::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:35%;
+    background:linear-gradient(180deg, rgba(10,10,10,0) 0%, var(--base) 92%);
+    pointer-events:none;
   }
   .cta-row{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
   .btn{
@@ -229,6 +247,9 @@
 
   @media (max-width:800px){
     .sobre-grid, .patrocinio-grid{grid-template-columns:1fr;gap:32px;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo{order:-1;margin-bottom:8px;}
+    .hero-photo img{max-height:48vh;}
     .galeria-grid{grid-template-columns:repeat(2,1fr);}
     nav .links{display:none;}
     section{padding:64px 0;}
@@ -250,14 +271,18 @@
 </nav>
 
 <section class="hero">
-  <div class="container">
-    <div class="tag">Faixa Preta · Ed. Física</div>
-    <h1>RODRIGO<br><span class="accent">ZANELLA</span></h1>
-    <p class="subtitle">Faixa preta que uniu formação técnica e resultado no tatame. Professor na CT Caveira, campeão mundial de Jiu-Jitsu pela SJJIF, no Japão.</p>
-    <div class="ph-photo">[ foto de competição/graduação entra aqui — Etapa 1 ]</div>
-    <div class="cta-row">
-      <a href="#patrocinio" class="btn btn-primary">Seja um patrocinador</a>
-      <a href="#conquistas" class="btn btn-ghost">Ver conquistas</a>
+  <div class="container hero-grid">
+    <div>
+      <div class="tag">Faixa Preta · Ed. Física</div>
+      <h1>RODRIGO<br><span class="accent">ZANELLA</span></h1>
+      <p class="subtitle">Faixa preta que uniu formação técnica e resultado no tatame. Professor na CT Caveira, campeão mundial de Jiu-Jitsu pela SJJIF, no Japão.</p>
+      <div class="cta-row">
+        <a href="#patrocinio" class="btn btn-primary">Seja um patrocinador</a>
+        <a href="#conquistas" class="btn btn-ghost">Ver conquistas</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/rodrigo-hero.png" alt="Rodrigo Zanella, faixa preta de Jiu-Jitsu, com medalhas do Sul-Americano">
     </div>
   </div>
 </section>
@@ -295,8 +320,8 @@
       <div class="conquista-item placeholder">
         <div class="ano">—</div>
         <div class="desc">
-          <h3>[ próximo título a confirmar — Etapa 1/2 ]</h3>
-          <p>Espaço reservado pra lista completa de conquistas.</p>
+          <h3>Campeão e Vice-Campeão Sul-Americano [ ano a confirmar ]</h3>
+          <p>Ouro e prata em categorias do Sul-Americano de Jiu-Jitsu.</p>
         </div>
       </div>
       <div class="conquista-item placeholder">
