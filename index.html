@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodrigo Zanella — Faixa Preta · Campeão Mundial SJJIF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0A0A0A;
+    --surface:#161616;
+    --line:#2A2A2A;
+    --ink:#F5F5F5;
+    --muted:#A3A3A3;
+    --red:#C81E2C;
+    --red-dark:#8C1420;
+    --gold:#C9A227;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--base);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.headline{
+    font-family:'Bebas Neue',sans-serif;
+    letter-spacing:0.03em;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+
+  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .container{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:16px;padding-bottom:16px;
+  }
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.05em;}
+  .logo span{color:var(--red);}
+  nav .links{display:flex;gap:28px;font-size:14px;text-transform:uppercase;letter-spacing:0.05em;}
+  nav .links a{text-decoration:none;color:var(--muted);transition:color .2s;}
+  nav .links a:hover{color:var(--white);}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:80px;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.95) 85%),
+      repeating-linear-gradient(135deg, #111 0px, #111 40px, #0d0d0d 40px, #0d0d0d 80px);
+    position:relative;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .tag{
+    color:var(--gold);
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:clamp(48px, 10vw, 120px);
+    line-height:0.95;
+    color:var(--white);
+  }
+  .hero h1 .accent{color:var(--red);}
+  .hero .subtitle{
+    margin-top:20px;
+    font-size:clamp(16px,2.5vw,22px);
+    color:var(--muted);
+    max-width:560px;
+  }
+  .hero .ph-photo{
+    margin-top:40px;
+    border:1px dashed var(--line);
+    background:var(--surface);
+    color:var(--muted);
+    font-size:13px;
+    padding:60px 20px;
+    text-align:center;
+    max-width:560px;
+  }
+  .cta-row{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:16px 32px;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:18px;
+    letter-spacing:0.05em;
+    text-decoration:none;
+    text-transform:uppercase;
+    border-radius:2px;
+    transition:transform .15s, background .2s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--red);color:var(--white);}
+  .btn-primary:hover{background:var(--red-dark);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* SECTION HEADER */
+  .section-label{
+    color:var(--red);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .section-title{
+    font-size:clamp(32px,5vw,52px);
+    color:var(--white);
+    margin-bottom:32px;
+  }
+
+  /* SOBRE */
+  #sobre{border-bottom:1px solid var(--line);}
+  .sobre-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:start;
+  }
+  .sobre-grid p{color:var(--muted);margin-bottom:16px;font-size:16px;}
+  .sobre-grid p em{color:var(--ink);font-style:normal;}
+  .credenciais{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:28px;
+  }
+  .credenciais li{
+    list-style:none;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+  }
+  .credenciais li:last-child{border-bottom:none;}
+  .credenciais .k{color:var(--muted);}
+  .credenciais .v{color:var(--white);font-weight:600;text-align:right;}
+
+  /* CONQUISTAS */
+  #conquistas{background:var(--surface);border-bottom:1px solid var(--line);}
+  .conquistas-list{display:flex;flex-direction:column;}
+  .conquista-item{
+    display:flex;
+    gap:24px;
+    align-items:baseline;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .conquista-item:last-child{border-bottom:none;}
+  .conquista-item .ano{
+    font-family:'Bebas Neue',sans-serif;
+    color:var(--gold);
+    font-size:28px;
+    min-width:90px;
+  }
+  .conquista-item .desc h3{font-size:20px;color:var(--white);font-weight:600;font-family:'Inter',sans-serif;}
+  .conquista-item .desc p{color:var(--muted);font-size:14px;margin-top:4px;}
+  .conquista-item.placeholder .ano{color:var(--muted);}
+  .conquista-item.placeholder .desc h3{color:var(--muted);font-weight:400;font-style:italic;}
+
+  /* GALERIA */
+  .galeria-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .ph-box{
+    aspect-ratio:4/5;
+    border:1px dashed var(--line);
+    background:linear-gradient(135deg, #141414, #1c1c1c);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--muted);
+    font-size:13px;
+    text-align:center;
+    padding:16px;
+  }
+
+  /* PATROCINIO */
+  #patrocinio{border-bottom:1px solid var(--line);}
+  .patrocinio-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+  }
+  .patrocinio-grid p{color:var(--muted);margin-bottom:16px;}
+  .contato-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px;
+  }
+  .contato-card h3{font-family:'Inter',sans-serif;font-size:16px;color:var(--white);margin-bottom:20px;}
+  .contato-card .linha{
+    display:flex;justify-content:space-between;
+    padding:12px 0;border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .contato-card .linha:last-child{border-bottom:none;}
+  .contato-card .k{color:var(--muted);}
+  .contato-card .v{color:var(--gold);}
+
+  footer{
+    padding:32px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  @media (max-width:800px){
+    .sobre-grid, .patrocinio-grid{grid-template-columns:1fr;gap:32px;}
+    .galeria-grid{grid-template-columns:repeat(2,1fr);}
+    nav .links{display:none;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">ZANELLA<span>JJ</span></div>
+    <div class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#conquistas">Conquistas</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#patrocinio">Patrocínio</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="tag">Faixa Preta · Ed. Física</div>
+    <h1>RODRIGO<br><span class="accent">ZANELLA</span></h1>
+    <p class="subtitle">Professor na CT Caveira. Campeão Mundial de Jiu-Jitsu pela SJJIF (Japão).</p>
+    <div class="ph-photo">[ foto de competição/graduação entra aqui — Etapa 1 ]</div>
+    <div class="cta-row">
+      <a href="#patrocinio" class="btn btn-primary">Seja um patrocinador</a>
+      <a href="#conquistas" class="btn btn-ghost">Ver conquistas</a>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container sobre-grid">
+    <div>
+      <div class="section-label">Sobre</div>
+      <h2 class="section-title">Trajetória</h2>
+      <p><em>[ Texto de bio final entra na Etapa 2 — placeholder abaixo ]</em></p>
+      <p>Rodrigo Zanella é faixa preta de Jiu-Jitsu e professor na Academia CT Caveira, formado em Licenciatura e Bacharelado em Educação Física. Une base técnica de competidor de alto nível com formação acadêmica na área — o que dá consistência tanto no tatame quanto no ensino.</p>
+      <p>Recentemente conquistou o título de Campeão Mundial de Jiu-Jitsu pela SJJIF, no Japão — resultado de anos de trabalho técnico e competitivo.</p>
+    </div>
+    <ul class="credenciais">
+      <li><span class="k">Faixa</span><span class="v">Preta</span></li>
+      <li><span class="k">Academia</span><span class="v">CT Caveira</span></li>
+      <li><span class="k">Formação</span><span class="v">Lic. e Bacharel em Ed. Física</span></li>
+      <li><span class="k">Título recente</span><span class="v">Campeão Mundial SJJIF (Japão)</span></li>
+      <li><span class="k">Instagram</span><span class="v">@zanellajj</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="conquistas">
+  <div class="container">
+    <div class="section-label">Conquistas</div>
+    <h2 class="section-title">Resultados no tatame</h2>
+    <div class="conquistas-list">
+      <div class="conquista-item">
+        <div class="ano">2026</div>
+        <div class="desc">
+          <h3>Campeão Mundial de Jiu-Jitsu — SJJIF (Japão)</h3>
+          <p>Título internacional na faixa preta.</p>
+        </div>
+      </div>
+      <div class="conquista-item placeholder">
+        <div class="ano">—</div>
+        <div class="desc">
+          <h3>[ próximo título a confirmar — Etapa 1/2 ]</h3>
+          <p>Espaço reservado pra lista completa de conquistas.</p>
+        </div>
+      </div>
+      <div class="conquista-item placeholder">
+        <div class="ano">—</div>
+        <div class="desc">
+          <h3>[ próximo título a confirmar ]</h3>
+          <p>Espaço reservado pra lista completa de conquistas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+    <div class="section-label">Galeria</div>
+    <h2 class="section-title">Competição, treino e graduação</h2>
+    <div class="galeria-grid">
+      <div class="ph-box">Foto 1<br>[ competição ]</div>
+      <div class="ph-box">Foto 2<br>[ treino ]</div>
+      <div class="ph-box">Foto 3<br>[ graduação ]</div>
+      <div class="ph-box">Foto 4<br>[ competição ]</div>
+      <div class="ph-box">Foto 5<br>[ CT Caveira ]</div>
+      <div class="ph-box">Foto 6<br>[ conquista ]</div>
+    </div>
+  </div>
+</section>
+
+<section id="patrocinio">
+  <div class="container patrocinio-grid">
+    <div>
+      <div class="section-label">Patrocínio</div>
+      <h2 class="section-title">Vista essa causa</h2>
+      <p><em>[ texto de proposta de valor final entra na Etapa 2 ]</em></p>
+      <p>Associar sua marca a um atleta faixa preta e campeão mundial é apoiar performance comprovada, disciplina e resultado — dentro e fora do tatame, com visibilidade junto a uma comunidade engajada de Jiu-Jitsu.</p>
+      <a href="#" class="btn btn-primary">Quero patrocinar</a>
+    </div>
+    <div class="contato-card">
+      <h3>Contato</h3>
+      <div class="linha"><span class="k">WhatsApp</span><span class="v">[ a definir ]</span></div>
+      <div class="linha"><span class="k">Email</span><span class="v">[ a definir ]</span></div>
+      <div class="linha"><span class="k">Instagram</span><span class="v">@zanellajj</span></div>
+      <div class="linha"><span class="k">Academia</span><span class="v">CT Caveira</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Rodrigo Zanella © 2026 — CT Caveira
+  </div>
+</footer>
+
+</body>
+</html>
