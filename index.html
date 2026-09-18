@@ -374,7 +374,28 @@
       <div class="conquista-item placeholder">
         <div class="ano">—</div>
         <div class="desc">
-          <h3>[ próximo título a confirmar ]</h3>
+          <h3>Campeão Circuito Brasileiro — Gi/No-Gi [ ano a confirmar ]</h3>
+          <p>1º lugar no Campeonato Brasileiro, categoria adulto.</p>
+        </div>
+      </div>
+      <div class="conquista-item placeholder">
+        <div class="ano">—</div>
+        <div class="desc">
+          <h3>Bicampeão Brasileiro — Gi e No-Gi [ ano a confirmar ]</h3>
+          <p>Dois ouros representando a CT Caveira.</p>
+        </div>
+      </div>
+      <div class="conquista-item placeholder">
+        <div class="ano">2025</div>
+        <div class="desc">
+          <h3>Campeão em São Paulo</h3>
+          <p>1º lugar, categoria adulto faixa preta.</p>
+        </div>
+      </div>
+      <div class="conquista-item placeholder">
+        <div class="ano">—</div>
+        <div class="desc">
+          <h3>[ próximo título, se tiver mais algum ]</h3>
           <p>Espaço reservado pra lista completa de conquistas.</p>
         </div>
       </div>
@@ -419,6 +440,16 @@
 
 <script>
 (function(){
+  var fotos = {
+    1: { src: 'img/galeria/foto-1.png', legenda: 'Circuito Brasileiro — Gi/No-Gi' },
+    2: { src: 'img/galeria/foto-2.png', legenda: 'Sul-Americano — ouro' },
+    3: { src: 'img/galeria/foto-3.png', legenda: 'Pódio — 1º lugar' },
+    4: { src: 'img/galeria/foto-4.png', legenda: 'Foco pré-luta' },
+    5: { src: 'img/galeria/foto-5.png', legenda: 'Campeonato Brasileiro — CT Caveira' },
+    6: { src: 'img/galeria/foto-6.png', legenda: 'Competição' },
+    7: { src: 'img/galeria/foto-7.png', legenda: 'Treino' },
+    8: { src: 'img/galeria/foto-8.png', legenda: 'São Paulo 2025 — ouro' }
+  };
   var categorias = ['competição','treino','graduação','CT Caveira','conquista'];
   var total = 20;
   var wrap = document.getElementById('cg-wrap');
@@ -430,10 +461,18 @@
   for (var i = 0; i < total; i++) {
     var card = document.createElement('div');
     card.className = 'cg-card';
-    var cat = categorias[i % categorias.length];
-    card.innerHTML =
-      '<div class="cg-ph">[ foto ' + (i + 1) + ' ]</div>' +
-      '<div class="cg-label"><span class="n">' + String(i + 1).padStart(2,'0') + '</span> — ' + cat + '</div>';
+    var num = i + 1;
+    var real = fotos[num];
+    if (real) {
+      card.innerHTML =
+        '<img src="' + real.src + '" alt="' + real.legenda + '" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">' +
+        '<div class="cg-label"><span class="n">' + String(num).padStart(2,'0') + '</span> — ' + real.legenda + '</div>';
+    } else {
+      var cat = categorias[i % categorias.length];
+      card.innerHTML =
+        '<div class="cg-ph">[ foto ' + num + ' ]</div>' +
+        '<div class="cg-label"><span class="n">' + String(num).padStart(2,'0') + '</span> — ' + cat + '</div>';
+    }
     card.style.transform = 'rotateY(' + (i * anglePerItem) + 'deg) translateZ(' + radius + 'px)';
     track.appendChild(card);
     cards.push(card);
