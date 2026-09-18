@@ -89,9 +89,9 @@ repo no GitHub → push → import na Vercel.
 
 - [x] Etapa 0 — pasta do projeto criada
 - [~] Etapa 1 — paleta/tipografia definidas; aguardando fotos
-- [ ] Etapa 2
+- [~] Etapa 2 — hero/sobre/patrocínio fechados (`copy.md`); falta lista de conquistas e contato real
 - [ ] Etapa 3
 - [ ] Etapa 4
 - [ ] Etapa 5
 - [ ] Etapa 6
-- [ ] Etapa 7
+- [x] Etapa 7 — deploy no ar via Vercel + GitHub
