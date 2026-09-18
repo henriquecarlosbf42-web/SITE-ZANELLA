@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rodrigo Zanella — Faixa Preta · Campeão Mundial SJJIF</title>
+<title>Rodrigo Zanella | Atleta de Jiu-Jitsu — Parcerias e Patrocínio</title>
+<meta name="description" content="Conheça Rodrigo Zanella, atleta de Jiu-Jitsu faixa-preta da CT Caveira, e descubra oportunidades de parceria e apoio esportivo.">
+<meta property="og:title" content="Rodrigo Zanella | Atleta de Jiu-Jitsu — Parcerias e Patrocínio">
+<meta property="og:description" content="Faixa preta, CT Caveira. Conheça a trajetória e as oportunidades de parceria comercial.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/rodrigo-hero.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +16,7 @@
   :root{
     --base:#0A0A0A;
     --surface:#161616;
+    --surface2:#1c1c1c;
     --line:#2A2A2A;
     --ink:#F5F5F5;
     --muted:#A3A3A3;
@@ -32,9 +38,23 @@
   }
   img{max-width:100%;display:block;}
   a{color:inherit;}
+  ::selection{background:var(--red);color:var(--white);}
 
   .container{max-width:1100px;margin:0 auto;padding:0 24px;}
   section{padding:96px 0;}
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.is-visible{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none;opacity:1;transform:none;}
+    *{animation:none !important;}
+  }
 
   /* NAV */
   nav{
@@ -79,8 +99,8 @@
     margin-bottom:16px;
   }
   .hero h1{
-    font-size:clamp(48px, 8vw, 110px);
-    line-height:0.95;
+    font-size:clamp(40px, 7vw, 92px);
+    line-height:1.02;
     color:var(--white);
   }
   .hero h1 .accent{color:var(--red);}
@@ -122,13 +142,38 @@
     text-decoration:none;
     text-transform:uppercase;
     border-radius:2px;
-    transition:transform .15s, background .2s;
+    transition:transform .15s, background .2s, border-color .2s, color .2s;
+    border:1px solid transparent;
+    cursor:pointer;
   }
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{background:var(--red);color:var(--white);}
   .btn-primary:hover{background:var(--red-dark);}
-  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:transparent;}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+  .scroll-hint{
+    position:absolute;
+    left:50%;bottom:28px;
+    transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    color:var(--muted);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+  }
+  .scroll-hint .line{width:1px;height:32px;background:var(--line);position:relative;overflow:hidden;}
+  .scroll-hint .line::after{
+    content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;
+    background:var(--gold);
+    animation:scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{top:-100%;} 50%{top:100%;} 100%{top:100%;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-hint .line::after{animation:none;top:0;}
+  }
 
   /* SECTION HEADER */
   .section-label{
@@ -140,9 +185,15 @@
     margin-bottom:12px;
   }
   .section-title{
-    font-size:clamp(32px,5vw,52px);
+    font-size:clamp(30px,5vw,48px);
     color:var(--white);
-    margin-bottom:32px;
+    margin-bottom:20px;
+  }
+  .section-intro{
+    color:var(--muted);
+    max-width:680px;
+    margin-bottom:40px;
+    font-size:16px;
   }
 
   /* SOBRE */
@@ -173,6 +224,54 @@
   .credenciais .k{color:var(--muted);}
   .credenciais .v{color:var(--white);font-weight:600;text-align:right;}
 
+  /* CARDS GRID (reutilizado em várias seções) */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+  }
+  .info-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 24px;
+    transition:transform .2s, border-color .2s;
+  }
+  .info-card:hover{transform:translateY(-4px);border-color:var(--gold);}
+  .info-card .n{
+    font-family:'Bebas Neue',sans-serif;
+    color:var(--red);
+    font-size:13px;
+    letter-spacing:0.1em;
+    margin-bottom:12px;
+    display:block;
+  }
+  .info-card h3{
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    color:var(--white);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .info-card p{color:var(--muted);font-size:14px;}
+  .info-card .big{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:32px;
+    color:var(--gold);
+  }
+
+  .tag-chip{
+    display:inline-block;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding:4px 10px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    color:var(--muted);
+    margin-top:12px;
+  }
+
   /* CONQUISTAS */
   #conquistas{background:var(--surface);border-bottom:1px solid var(--line);}
   .conquistas-list{display:flex;flex-direction:column;}
@@ -196,6 +295,7 @@
   .conquista-item.placeholder .desc h3{color:var(--muted);font-weight:400;font-style:italic;}
 
   /* GALERIA — carrossel circular 3D */
+  #galeria{border-bottom:1px solid var(--line);}
   .cg-wrap{
     position:relative;
     width:100%;
@@ -252,14 +352,75 @@
     margin-top:16px;
   }
 
-  /* PATROCINIO */
-  #patrocinio{border-bottom:1px solid var(--line);}
-  .patrocinio-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:64px;
+  /* REDES SOCIAIS */
+  #redes{text-align:center;border-bottom:1px solid var(--line);}
+  #redes .section-label, #redes .section-title{text-align:center;}
+  #redes .handle{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(28px,4vw,40px);
+    color:var(--white);
+    margin-bottom:8px;
   }
-  .patrocinio-grid p{color:var(--muted);margin-bottom:16px;}
+  #redes .followers{color:var(--muted);font-size:14px;margin-bottom:28px;}
+
+  /* CONTRAPARTIDAS */
+  .contrapartidas-list{display:flex;flex-direction:column;max-width:760px;}
+  .contrapartida-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .contrapartida-item:last-child{border-bottom:none;}
+  .contrapartida-item .txt{color:var(--ink);font-size:15px;}
+
+  /* PROPOSTA (form + contato) */
+  #proposta{border-bottom:1px solid var(--line);}
+  .proposta-grid{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:48px;
+    align-items:start;
+  }
+  .form-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px;
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .field input, .field select, .field textarea{
+    width:100%;
+    background:var(--surface2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:12px 14px;
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+  }
+  .field textarea{resize:vertical;min-height:90px;}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-msg{
+    margin-top:16px;
+    font-size:13px;
+    color:var(--gold);
+    display:none;
+  }
+  .form-msg.show{display:block;}
+
   .contato-card{
     background:var(--surface);
     border:1px solid var(--line);
@@ -275,6 +436,20 @@
   .contato-card .linha:last-child{border-bottom:none;}
   .contato-card .k{color:var(--muted);}
   .contato-card .v{color:var(--gold);}
+  .contato-card .sub{color:var(--muted);font-size:13px;margin-top:20px;}
+
+  /* CTA FINAL */
+  .cta-final{
+    position:relative;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 50% 30%, rgba(200,30,44,0.12) 0%, rgba(10,10,10,0) 70%),
+      var(--base);
+  }
+  .cta-final .section-title, .cta-final .section-label{text-align:center;}
+  .cta-final p{color:var(--muted);max-width:600px;margin:0 auto 32px;}
+  .cta-final .cta-row{justify-content:center;}
 
   footer{
     padding:32px 0;
@@ -284,22 +459,21 @@
   }
 
   @media (max-width:800px){
-    .sobre-grid, .patrocinio-grid{grid-template-columns:1fr;gap:32px;}
+    .sobre-grid, .proposta-grid{grid-template-columns:1fr;gap:32px;}
     .hero-grid{grid-template-columns:1fr;}
     .hero-photo{order:-1;margin-bottom:8px;}
     .hero-photo img{max-height:48vh;}
     .cg-wrap{height:340px;}
     .cg-card{width:130px;height:175px;margin:-88px 0 0 -65px;}
+    .field-row{grid-template-columns:1fr;}
     nav .links{display:none;}
 
     /* Alinhamento central em mobile */
-    .section-label, .section-title{text-align:center;}
+    .section-label, .section-title, .section-intro{text-align:center;margin-left:auto;margin-right:auto;}
     .hero-grid > div:first-child{text-align:center;}
     .hero .subtitle{margin-left:auto;margin-right:auto;}
     .cta-row{justify-content:center;}
     .sobre-grid > div:first-child{text-align:center;}
-    .patrocinio-grid > div:first-child{text-align:center;}
-    .patrocinio-grid > div:first-child p{margin-left:auto;margin-right:auto;max-width:480px;}
     section{padding:64px 0;}
   }
 </style>
@@ -312,8 +486,9 @@
     <div class="links">
       <a href="#sobre">Sobre</a>
       <a href="#conquistas">Conquistas</a>
+      <a href="#oportunidades">Parceria</a>
       <a href="#galeria">Galeria</a>
-      <a href="#patrocinio">Patrocínio</a>
+      <a href="#proposta">Contato</a>
     </div>
   </div>
 </nav>
@@ -321,79 +496,111 @@
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="tag">Faixa Preta · Ed. Física</div>
-      <h1>RODRIGO<br><span class="accent">ZANELLA</span></h1>
-      <p class="subtitle">Faixa preta que uniu formação técnica e resultado no tatame. Professor na CT Caveira, campeão mundial de Jiu-Jitsu pela SJJIF, no Japão.</p>
+      <div class="tag">Jiu-Jitsu · Faixa Preta · CT Caveira</div>
+      <h1>DEDICAÇÃO QUE VAI<br><span class="accent">ALÉM DO TATAME.</span></h1>
+      <p class="subtitle">Conheça Rodrigo Zanella, atleta de Jiu-Jitsu faixa-preta da CT Caveira. Uma trajetória construída com dedicação e o desejo de formar parcerias que apoiem sua jornada esportiva.</p>
       <div class="cta-row">
-        <a href="#patrocinio" class="btn btn-primary">Seja um patrocinador</a>
-        <a href="#conquistas" class="btn btn-ghost">Ver conquistas</a>
+        <a href="#proposta" class="btn btn-primary">Quero ser um parceiro</a>
+        <a href="#sobre" class="btn btn-ghost">Conhecer o projeto</a>
       </div>
     </div>
     <div class="hero-photo">
       <img src="img/rodrigo-hero.png" alt="Rodrigo Zanella, faixa preta de Jiu-Jitsu, com medalhas do Sul-Americano">
     </div>
   </div>
+  <div class="scroll-hint"><span>Role</span><div class="line"></div></div>
 </section>
 
 <section id="sobre">
   <div class="container sobre-grid">
-    <div>
-      <div class="section-label">Sobre</div>
+    <div class="reveal">
+      <div class="section-label">Por trás do atleta, existe uma história</div>
       <h2 class="section-title">Trajetória</h2>
-      <p>Rodrigo Zanella é faixa preta de Jiu-Jitsu, professor na Academia CT Caveira e formado em Licenciatura e Bacharelado em Educação Física. A combinação não é comum: a mesma disciplina que ele aplica em competição é a que leva pra sala de aula, formando atletas com base técnica sólida desde o início.</p>
-      <p>Em 2026, essa trajetória chegou ao ponto mais alto até aqui — o título de Campeão Mundial de Jiu-Jitsu pela SJJIF, conquistado no Japão. Um resultado que não nasce de um evento isolado, mas de anos de trabalho técnico, competitivo e de ensino.</p>
+      <p>Rodrigo Zanella é atleta de Jiu-Jitsu, faixa-preta, integrante da equipe CT Caveira e competidor da categoria adulto — também formado em Licenciatura e Bacharelado em Educação Física. A mesma disciplina aplicada em competição é a que ele leva pra sala de aula, formando atletas com base técnica sólida desde o início.</p>
+      <p>Esta página foi criada pra aproximar empresas e parceiros que queiram apoiar essa jornada — contribuindo pra participação em competições e o desenvolvimento contínuo dentro da modalidade.</p>
     </div>
-    <ul class="credenciais">
+    <ul class="credenciais reveal">
+      <li><span class="k">Modalidade</span><span class="v">Brazilian Jiu-Jitsu</span></li>
       <li><span class="k">Faixa</span><span class="v">Preta</span></li>
-      <li><span class="k">Academia</span><span class="v">CT Caveira</span></li>
+      <li><span class="k">Categoria</span><span class="v">Adulto</span></li>
+      <li><span class="k">Equipe</span><span class="v">CT Caveira</span></li>
       <li><span class="k">Formação</span><span class="v">Lic. e Bacharel em Ed. Física</span></li>
-      <li><span class="k">Título recente</span><span class="v">Campeão Mundial SJJIF (Japão)</span></li>
       <li><span class="k">Instagram</span><span class="v">@zanellajj</span></li>
     </ul>
   </div>
 </section>
 
+<section id="perfil" style="border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-label reveal">Perfil esportivo</div>
+    <h2 class="section-title reveal">Quem é Rodrigo, em números</h2>
+    <div class="card-grid">
+      <div class="info-card reveal">
+        <span class="n">MODALIDADE</span>
+        <h3>Brazilian Jiu-Jitsu</h3>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">GRADUAÇÃO</span>
+        <h3>Faixa Preta</h3>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">CATEGORIA</span>
+        <h3>Adulto</h3>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">EQUIPE</span>
+        <h3>CT Caveira</h3>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">COMUNIDADE DIGITAL</span>
+        <div class="big">1.456</div>
+        <p>seguidores informados no Instagram</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="conquistas">
   <div class="container">
-    <div class="section-label">Conquistas</div>
-    <h2 class="section-title">Resultados no tatame</h2>
+    <div class="section-label reveal">Conquistas</div>
+    <h2 class="section-title reveal">Resultados no tatame</h2>
     <div class="conquistas-list">
-      <div class="conquista-item">
+      <div class="conquista-item reveal">
         <div class="ano">2026</div>
         <div class="desc">
           <h3>Campeão Mundial de Jiu-Jitsu — SJJIF (Japão)</h3>
           <p>Título internacional na faixa preta.</p>
         </div>
       </div>
-      <div class="conquista-item placeholder">
+      <div class="conquista-item placeholder reveal">
         <div class="ano">—</div>
         <div class="desc">
           <h3>Campeão e Vice-Campeão Sul-Americano [ ano a confirmar ]</h3>
           <p>Ouro e prata em categorias do Sul-Americano de Jiu-Jitsu.</p>
         </div>
       </div>
-      <div class="conquista-item placeholder">
+      <div class="conquista-item placeholder reveal">
         <div class="ano">—</div>
         <div class="desc">
           <h3>Campeão Circuito Brasileiro — Gi/No-Gi [ ano a confirmar ]</h3>
           <p>1º lugar no Campeonato Brasileiro, categoria adulto.</p>
         </div>
       </div>
-      <div class="conquista-item placeholder">
+      <div class="conquista-item placeholder reveal">
         <div class="ano">—</div>
         <div class="desc">
           <h3>Bicampeão Brasileiro — Gi e No-Gi [ ano a confirmar ]</h3>
           <p>Dois ouros representando a CT Caveira.</p>
         </div>
       </div>
-      <div class="conquista-item placeholder">
+      <div class="conquista-item placeholder reveal">
         <div class="ano">2025</div>
         <div class="desc">
           <h3>Campeão em São Paulo</h3>
           <p>1º lugar, categoria adulto faixa preta.</p>
         </div>
       </div>
-      <div class="conquista-item placeholder">
+      <div class="conquista-item placeholder reveal">
         <div class="ano">—</div>
         <div class="desc">
           <h3>[ próximo título, se tiver mais algum ]</h3>
@@ -404,10 +611,123 @@
   </div>
 </section>
 
+<section id="porque" style="background:var(--surface);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-label reveal">Por que uma parceria esportiva?</div>
+    <h2 class="section-title reveal">Uma parceria construída com propósito</h2>
+    <p class="section-intro reveal">O apoio de uma empresa pode contribuir diretamente pra que um atleta tenha melhores condições de participar de competições e seguir desenvolvendo sua trajetória. A proposta é construir uma relação transparente, profissional e alinhada aos objetivos do atleta e da empresa parceira.</p>
+    <div class="card-grid">
+      <div class="info-card reveal">
+        <span class="n">01</span>
+        <h3>Associação ao esporte</h3>
+        <p>Conecte sua marca aos valores de disciplina, dedicação e desenvolvimento esportivo.</p>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">02</span>
+        <h3>Relacionamento com o público</h3>
+        <p>Explore oportunidades de comunicação e relacionamento por meio de conteúdos e ações previamente combinados.</p>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">03</span>
+        <h3>Apoio à competição</h3>
+        <p>Contribua com despesas de inscrições e viagens, conforme o formato de parceria estabelecido.</p>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">04</span>
+        <h3>Relação de longo prazo</h3>
+        <p>Construa uma parceria com objetivos claros, alinhamento e acompanhamento das entregas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="oportunidades" style="border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-label reveal">Oportunidades para patrocinadores</div>
+    <h2 class="section-title reveal">Encontre uma forma de fazer parte</h2>
+    <p class="section-intro reveal">Cada empresa tem objetivos diferentes. Por isso, a proposta de parceria é construída de acordo com as possibilidades de apoio e as contrapartidas que podem ser oferecidas.</p>
+    <div class="card-grid">
+      <div class="info-card reveal">
+        <h3>Academias e empresas esportivas</h3>
+        <p>Parcerias voltadas ao desenvolvimento esportivo, equipamentos, serviços e apoio à preparação do atleta.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Suplementos e nutrição</h3>
+        <p>Colaboração com marcas de nutrição esportiva e produtos alinhados à rotina do atleta.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Clínicas e profissionais de saúde</h3>
+        <p>Parcerias relacionadas ao acompanhamento esportivo e ao bem-estar do atleta, dentro dos serviços efetivamente oferecidos.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Empresas locais</h3>
+        <p>Empresas da região podem apoiar o esporte e desenvolver uma parceria de comunicação com o atleta.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Apoio financeiro</h3>
+        <p>Contribuições direcionadas a inscrições e viagens para competições, com condições e contrapartidas definidas em conjunto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apoio" style="background:var(--surface);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-label reveal">Como a empresa pode apoiar</div>
+    <h2 class="section-title reveal">Seu apoio pode fazer parte da próxima etapa</h2>
+    <p class="section-intro reveal">Hoje, a prioridade é apoio direto às competições — inscrições e deslocamento. Valores e campeonatos específicos são definidos em conversa direta com o atleta.</p>
+    <div class="card-grid">
+      <div class="info-card reveal">
+        <span class="n">PRIORIDADE</span>
+        <h3>Inscrições</h3>
+        <p>Custos de inscrição em campeonatos.</p>
+      </div>
+      <div class="info-card reveal">
+        <span class="n">PRIORIDADE</span>
+        <h3>Transporte</h3>
+        <p>Deslocamento até as competições.</p>
+      </div>
+      <div class="info-card reveal">
+        <h3>Hospedagem</h3>
+        <p>Quando incluída na negociação da parceria.</p>
+        <span class="tag-chip">Conforme parceria</span>
+      </div>
+      <div class="info-card reveal">
+        <h3>Outras despesas</h3>
+        <p>Diretamente relacionadas à participação esportiva, quando definidas.</p>
+        <span class="tag-chip">Sujeito à disponibilidade</span>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a href="https://wa.me/5512981499602?text=Ol%C3%A1%2C%20Rodrigo!%20Quero%20conversar%20sobre%20apoio%20para%20suas%20competi%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn btn-primary">Conversar sobre apoio</a>
+    </div>
+  </div>
+</section>
+
+<section id="contrapartidas" style="border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-label reveal">Contrapartidas comerciais</div>
+    <h2 class="section-title reveal">Uma parceria com valor para os dois lados</h2>
+    <p class="section-intro reveal">Cada parceria é avaliada individualmente, considerando o tipo de apoio, as necessidades do atleta e as possibilidades de divulgação e relacionamento da empresa parceira.</p>
+    <div class="contrapartidas-list">
+      <div class="contrapartida-item reveal"><span class="txt">Publicações nas redes sociais</span><span class="tag-chip">Negociável</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Menções à empresa parceira</span><span class="tag-chip">Negociável</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Conteúdos relacionados à parceria</span><span class="tag-chip">Conforme parceria</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Divulgação da marca</span><span class="tag-chip">Quando autorizada</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Presença de marca no uniforme</span><span class="tag-chip">Sujeito à disponibilidade</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Ações personalizadas com a empresa</span><span class="tag-chip">Negociável</span></div>
+      <div class="contrapartida-item reveal"><span class="txt">Registro e apresentação das entregas combinadas</span><span class="tag-chip">Conforme parceria</span></div>
+    </div>
+    <div class="cta-row">
+      <a href="#proposta" class="btn btn-primary">Solicitar proposta</a>
+    </div>
+  </div>
+</section>
+
 <section id="galeria">
   <div class="container">
-    <div class="section-label">Galeria</div>
-    <h2 class="section-title">Competição, treino e graduação</h2>
+    <div class="section-label reveal">Galeria</div>
+    <h2 class="section-title reveal">Competição, treino e graduação</h2>
     <div class="cg-wrap" id="cg-wrap">
       <div class="cg-track" id="cg-track"></div>
     </div>
@@ -415,19 +735,93 @@
   </div>
 </section>
 
-<section id="patrocinio">
-  <div class="container patrocinio-grid">
-    <div>
-      <div class="section-label">Patrocínio</div>
-      <h2 class="section-title">Vista essa causa</h2>
-      <p>Associar uma marca a um atleta faixa preta e campeão mundial é investir em performance comprovada, não em promessa. É disciplina que já deu resultado dentro do tatame e visibilidade real junto a uma comunidade de Jiu-Jitsu engajada — de alunos, colegas de academia e quem acompanha o esporte.</p>
-      <a href="https://wa.me/5512981499602" target="_blank" rel="noopener" class="btn btn-primary">Quero patrocinar</a>
+<section id="redes">
+  <div class="container">
+    <div class="section-label reveal">Redes sociais</div>
+    <h2 class="section-title reveal">Acompanhe a jornada</h2>
+    <div class="handle reveal">@zanellajj</div>
+    <div class="followers reveal">1.456 seguidores</div>
+    <a href="https://instagram.com/zanellajj" target="_blank" rel="noopener" class="btn btn-primary reveal">Acompanhar no Instagram</a>
+  </div>
+</section>
+
+<section id="proposta">
+  <div class="container proposta-grid">
+    <div class="form-card reveal">
+      <div class="section-label">Proposta de parceria</div>
+      <h2 class="section-title">Vamos construir essa parceria?</h2>
+      <p style="color:var(--muted);margin-bottom:24px;">Se sua empresa acredita no esporte e quer conhecer possibilidades de apoio à trajetória de Rodrigo Zanella, preenche os campos abaixo — ao enviar, abre o WhatsApp com tudo já preenchido pra você só confirmar o envio.</p>
+      <form id="form-parceria" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-nome">Nome *</label>
+            <input type="text" id="f-nome" name="nome" required>
+          </div>
+          <div class="field">
+            <label for="f-empresa">Empresa *</label>
+            <input type="text" id="f-empresa" name="empresa" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-email">E-mail</label>
+            <input type="email" id="f-email" name="email">
+          </div>
+          <div class="field">
+            <label for="f-whatsapp">WhatsApp *</label>
+            <input type="tel" id="f-whatsapp" name="whatsapp" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-segmento">Segmento da empresa *</label>
+          <select id="f-segmento" name="segmento" required>
+            <option value="">Selecione</option>
+            <option>Academia / empresa esportiva</option>
+            <option>Suplementos e nutrição</option>
+            <option>Clínica / profissional de saúde</option>
+            <option>Empresa local</option>
+            <option>Apoio financeiro</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-apoio">Tipo de apoio desejado *</label>
+          <select id="f-apoio" name="apoio" required>
+            <option value="">Selecione</option>
+            <option>Inscrições em competições</option>
+            <option>Viagens</option>
+            <option>Apoio financeiro</option>
+            <option>Produtos e equipamentos</option>
+            <option>Parceria comercial</option>
+            <option>Ainda não definido</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-mensagem">Mensagem</label>
+          <textarea id="f-mensagem" name="mensagem"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar interesse em patrocínio</button>
+        <p class="form-msg" id="form-msg">Preenche os campos obrigatórios (*) pra continuar.</p>
+      </form>
     </div>
-    <div class="contato-card">
-      <h3>Contato</h3>
+    <div class="contato-card reveal">
+      <h3>Contato direto</h3>
       <div class="linha"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/5512981499602" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">+55 12 98149-9602</a></span></div>
       <div class="linha"><span class="k">Instagram</span><span class="v">@zanellajj</span></div>
       <div class="linha"><span class="k">Academia</span><span class="v">CT Caveira</span></div>
+      <p class="sub">Prefere falar direto? É só chamar no WhatsApp, sem precisar preencher o formulário.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <div class="section-label reveal">Vamos junto</div>
+    <h2 class="section-title reveal">ACREDITAR NO ESPORTE<br>É FAZER PARTE DELE.</h2>
+    <p class="reveal">Conheça o projeto de Rodrigo Zanella e descubra como sua empresa pode contribuir para sua jornada no Jiu-Jitsu.</p>
+    <div class="cta-row reveal">
+      <a href="#proposta" class="btn btn-primary">Quero ser um parceiro</a>
+      <a href="https://wa.me/5512981499602" target="_blank" rel="noopener" class="btn btn-ghost">Entrar em contato</a>
     </div>
   </div>
 </section>
@@ -541,6 +935,60 @@
   }
 
   render();
+})();
+</script>
+
+<script>
+(function(){
+  /* Reveal on scroll */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* Formulário -> WhatsApp */
+  var form = document.getElementById('form-parceria');
+  var msg = document.getElementById('form-msg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome = form.nome.value.trim();
+    var empresa = form.empresa.value.trim();
+    var whatsapp = form.whatsapp.value.trim();
+    var segmento = form.segmento.value;
+    var apoio = form.apoio.value;
+    var email = form.email.value.trim();
+    var mensagem = form.mensagem.value.trim();
+
+    if (!nome || !empresa || !whatsapp || !segmento || !apoio) {
+      msg.textContent = 'Preenche os campos obrigatórios (*) pra continuar.';
+      msg.classList.add('show');
+      return;
+    }
+
+    var texto = 'Olá, Rodrigo! Tenho interesse em conversar sobre patrocínio.\n\n' +
+      'Nome: ' + nome + '\n' +
+      'Empresa: ' + empresa + '\n' +
+      'WhatsApp: ' + whatsapp + '\n' +
+      (email ? ('E-mail: ' + email + '\n') : '') +
+      'Segmento: ' + segmento + '\n' +
+      'Tipo de apoio: ' + apoio +
+      (mensagem ? ('\nMensagem: ' + mensagem) : '');
+
+    var url = 'https://wa.me/5512981499602?text=' + encodeURIComponent(texto);
+    window.open(url, '_blank', 'noopener');
+    msg.textContent = 'Abrindo o WhatsApp com seus dados preenchidos...';
+    msg.classList.add('show');
+  });
 })();
 </script>
 
