@@ -294,6 +294,31 @@
   .conquista-item.placeholder .ano{color:var(--muted);}
   .conquista-item.placeholder .desc h3{color:var(--muted);font-weight:400;font-style:italic;}
 
+  /* QUEBRA DE FOTO entre seções */
+  .photo-break{
+    padding:48px 0;
+    display:flex;
+    justify-content:center;
+  }
+  .photo-break .frame{
+    max-width:460px;
+    width:100%;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 30px 50px rgba(0,0,0,0.5);
+  }
+  .photo-break img{width:100%;height:auto;display:block;}
+  .photo-break .cap{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-top:14px;
+  }
+  .photo-break .cap span{color:var(--gold);}
+
   /* GALERIA — carrossel circular 3D */
   #galeria{border-bottom:1px solid var(--line);}
   .cg-wrap{
@@ -560,6 +585,15 @@
   </div>
 </section>
 
+<div class="photo-break">
+  <div>
+    <div class="frame reveal">
+      <img src="img/galeria/foto-4.png" alt="Rodrigo Zanella em momento de foco antes da luta" loading="lazy">
+    </div>
+    <p class="cap"><span>Foco</span> — antes de entrar no tatame</p>
+  </div>
+</div>
+
 <section id="conquistas">
   <div class="container">
     <div class="section-label reveal">Conquistas</div>
@@ -671,6 +705,15 @@
   </div>
 </section>
 
+<div class="photo-break">
+  <div>
+    <div class="frame reveal">
+      <img src="img/galeria/foto-7.png" alt="Rodrigo Zanella treinando no tatame" loading="lazy">
+    </div>
+    <p class="cap"><span>Treino</span> — trabalho técnico no dia a dia</p>
+  </div>
+</div>
+
 <section id="apoio" style="background:var(--surface);border-bottom:1px solid var(--line);">
   <div class="container">
     <div class="section-label reveal">Como a empresa pode apoiar</div>
@@ -723,6 +766,15 @@
     </div>
   </div>
 </section>
+
+<div class="photo-break">
+  <div>
+    <div class="frame reveal">
+      <img src="img/galeria/foto-3.png" alt="Rodrigo Zanella no pódio com troféu de 1º lugar" loading="lazy">
+    </div>
+    <p class="cap"><span>Pódio</span> — resultado do trabalho</p>
+  </div>
+</div>
 
 <section id="galeria">
   <div class="container">
